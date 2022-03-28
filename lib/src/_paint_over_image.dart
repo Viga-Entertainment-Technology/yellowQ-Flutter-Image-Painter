@@ -928,7 +928,7 @@ class ImagePainterState extends State<ImagePainter> {
           //     icon: const Icon(Icons.text_format), onPressed: _openTextDialog),
           // const Spacer(),
           IconButton(
-            tooltip: textDelegate.clearAllProgress,
+            tooltip: textDelegate.resumeDraw,
             icon: Icon(Icons.brush, color: Colors.grey[700]),
             onPressed: () => setState(() {
               _showControls = false;
