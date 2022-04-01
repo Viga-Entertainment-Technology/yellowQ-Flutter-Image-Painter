@@ -487,14 +487,14 @@ class ImagePainterState extends State<ImagePainter> {
 
   ///paints image on given constrains for drawing if image is not null.
   Widget _paintImage() {
-    return RepaintBoundary(
-      key: _repaintKey,
-      child: Container(
-        height: widget.height ?? double.maxFinite,
-        width: widget.width ?? double.maxFinite,
-        child: Stack(
-          children: [
-            FittedBox(
+    return Container(
+      height: widget.height ?? double.maxFinite,
+      width: widget.width ?? double.maxFinite,
+      child: Stack(
+        children: [
+          RepaintBoundary(
+            key: _repaintKey,
+            child: FittedBox(
               alignment: FractionalOffset.center,
               child: ClipRect(
                 child: ValueListenableBuilder<Controller>(
@@ -572,32 +572,32 @@ class ImagePainterState extends State<ImagePainter> {
                 ),
               ),
             ),
-            if (_showControls)
-              Positioned(
-                top: 10,
-                right: 10,
-                child: _buildControls(),
-              ),
-            if (!_showControls)
-              Positioned(
-                top: 10,
-                right: 5,
-                child: InkWell(
-                  // padding: EdgeInsets.zero,
-                  onTap: () {
-                    setState(() {
-                      _showControls = true;
-                    });
-                  },
-                  child: const Icon(
-                    Icons.more_vert,
-                    size: 24,
-                    color: Colors.white,
-                  ),
+          ),
+          if (_showControls)
+            Positioned(
+              top: 10,
+              right: 10,
+              child: _buildControls(),
+            ),
+          if (!_showControls)
+            Positioned(
+              top: 10,
+              right: 5,
+              child: InkWell(
+                // padding: EdgeInsets.zero,
+                onTap: () {
+                  setState(() {
+                    _showControls = true;
+                  });
+                },
+                child: const Icon(
+                  Icons.more_vert,
+                  size: 24,
+                  color: Colors.white,
                 ),
-              )
-          ],
-        ),
+              ),
+            )
+        ],
       ),
     );
   }
